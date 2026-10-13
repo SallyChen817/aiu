@@ -1,0 +1,56 @@
+Dify 持久化修复记录
+日期：2026-10-10
+
+故障证据
+重启后再次要求设置管理员。运行中的数据库账号数和应用数均为 0。
+数据库容器声明的 bind 源为 /home/USER/apps/dify-1.17.1/docker/volumes/db/data，
+但容器内 PG_VERSION 文件创建于 10 月 10 日，inode 为 56；
+Ubuntu 原目录内同名文件创建于 10 月 8 日，inode 为 62451。
+说明此轮容器没有读到 Ubuntu 的原数据目录。底层 Docker Desktop/WSL 挂载失配机制未完全定位。
+
+本次处理
+1. 停止 Dify 服务。
+2. 备份 Ubuntu 原 volumes、.env、docker-compose.yaml，以及容器当前空数据库。
+3. 将原数据复制到 Docker 管理的固定名称 external volumes。
+4. 逐文件 SHA256 校验通过：数据库 2470 个文件、应用存储 5 个文件、插件 8817 个文件、Redis 1 个文件、Weaviate 8 个文件。
+5. 新增 docker-compose.override.yaml，同一目录的 docker compose up -d 自动加载。
+6. 保留 Ubuntu 原数据目录及原始配置，不删除。
+
+配置位置（Ubuntu）
+/home/USER/apps/dify-1.17.1/docker/docker-compose.override.yaml
+该文件使用 JSON 语法（有效 YAML），覆盖各服务的数据挂载，不能丢失。
+
+数据卷名称
+aiu_dify_db_20261010
+aiu_dify_app_20261010
+aiu_dify_plugins_20261010
+aiu_dify_redis_20261010
+aiu_dify_weaviate_20261010
+
+备份位置（Ubuntu，仅本地保管，内含敏感配置）
+/home/USER/dify-backups/named-volumes-20261010-140000/
+original-volumes-config.tar.gz：迁移前原目录和配置
+current-empty-db.tar：当时容器读到的空数据库
+migration.json：持久卷映射记录
+
+验证结果
+迁移后以及完整执行一次 docker compose stop、docker compose up -d 后，均查到：
+账号 1 个；应用 2 个（测试、学习任务助手）；workflow 记录 2 条。
+Windows 访问 http://localhost/console/api/setup 返回 step=finished。
+此轮未重启整台 Windows 或整个 Docker Desktop，不能声称已验证完整电脑重启。
+没有测试账号密码登录、模型生成或任务工具调用，本次验证范围是数据挂载、记录保留和初始化状态。
+
+日常启动
+Windows 打开 Docker Desktop，等待引擎就绪；需要模型时打开 Ollama。
+PowerShell：wsl -d Ubuntu
+Ubuntu：
+cd ~/apps/dify-1.17.1/docker
+docker compose up -d
+docker compose ps
+浏览器：http://localhost/apps
+
+后续维护
+实际运行数据现在在 Docker 数据卷内。旧 volumes 目录是迁移时的保留副本，不会继续同步更新。
+今后的备份应包含运行中的数据卷（数据库优先用逻辑备份）、.env 和 override 配置。
+不要手工删除上述卷或重置 Docker Desktop 数据；不要只删除 override 文件以为可以无损回滚。
+如果要回滚，先停止服务并备份当前持久卷，再核对旧数据版本，防止丢失迁移后的修改。

@@ -1,0 +1,7 @@
+# Main versions recorded in the original project; not a full environment lock.
+torch==2.12.1
+torchvision==0.27.1
+ultralytics==8.4.136
+opencv-python==5.0.0.93
+fastapi==0.143.0
+uvicorn==0.54.0

@@ -1,0 +1,54 @@
+# Local dependencies, editor state and generated caches
+**/.git/
+**/node_modules/
+**/.venv/
+**/venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.npm-cache/
+**/.runtime/
+**/.vscode/
+**/.idea/
+**/.local-service-state/
+*.py[cod]
+*.cache
+*.log
+*.pid
+*.tmp
+*.bak
+Thumbs.db
+.DS_Store
+
+# Machine configuration, secrets and personal data
+.env
+.env.*
+!.env.example
+config.local.json
+auth.json
+models-store.json
+settings.json
+qa-credential.json
+.qa-*.json
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.jsonl
+*.pem
+*.key
+**/sessions/
+**/backups/
+
+# Desktop launchers and shortcuts
+*.lnk
+*.url
+*.cmd
+*.bat
+*.ps1
+
+# Re-generated workflow output and future YOLO experiments
+built-dsl.json
+projects/02-pen-detection/runs/*
+!projects/02-pen-detection/runs/pen_obb/
+projects/02-pen-detection/runs/pen_obb/*
+!projects/02-pen-detection/runs/pen_obb/train1/

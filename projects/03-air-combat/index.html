@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d18"><title>雷霆空战 · THUNDER SQUADRON</title><link rel="stylesheet" href="style.css"></head>
+<body>
+ <header class="topbar"><a class="brand" href="./"><span class="brand-icon">ϟ</span><span>雷霆空战<small>THUNDER SQUADRON</small></span></a><div class="top-right"><span class="online"><i></i> 本地作战系统</span><button id="sound" class="icon-button" title="开关声音">声音 OFF</button><button id="pause" class="icon-button" disabled>暂停 P</button></div></header>
+ <main class="layout">
+  <aside class="left-panel">
+   <div class="eyebrow">FLIGHT COMMAND / 01</div><h1>冲破黑夜。<br><span>掌控天空。</span></h1><p class="intro">引擎就绪，导弹待命。<br>下一次传奇，由你起飞。</p>
+   <section class="panel"><div class="section-label">本次作战 <span id="status">待命中</span></div><div class="score" id="score">000000</div><div class="score-caption">MISSION SCORE</div><div class="mini-stats"><div><span>击落</span><b id="kills">0</b></div><div><span>飞行时间</span><b id="time">00:00</b></div></div></section>
+   <section class="panel compact"><div class="record-line"><span>历史最高</span><strong id="best">0</strong></div><div class="record-line"><span>累计星币 <em>✦</em></span><strong id="coins">0</strong></div><p class="muted">每 100 战斗积分结算 1 星币</p><p id="storage-note" class="muted"></p></section>
+   <div class="mission-note"><span class="tiny-square"></span><div><b>行动代号：破晓</b><p>突破三个空域，击败虚空旗舰。<br>预计作战时间 2–3 分钟。</p></div></div>
+  </aside>
+  <section class="arena-shell" aria-label="空战游戏区域">
+   <div class="arena-top"><span><i class="live-dot"></i> LIVE FEED</span><span id="sector">SECTOR 01 · 近地轨道</span><span>60 FPS TARGET</span></div>
+   <div class="arena" id="arena"><canvas id="game" width="600" height="800" tabindex="0" aria-label="雷霆空战战场，方向键移动，空格发射导弹，P 暂停"></canvas>
+    <div class="game-hud"><span id="wave">01 / 03 空域</span><span id="combo">等待出击</span></div>
+    <div class="boss-hud hidden" id="boss-hud"><div>虚空旗舰 <span id="boss-percent">100%</span></div><div class="boss-track"><i id="boss-bar"></i></div></div>
+    <div id="toast" class="toast" role="status"></div>
+    <div id="menu" class="overlay"><div class="menu-content"><span class="pill">ARCADE SHOOTER · VOL. 01</span><div class="hero-mark">ϟ</div><h2>雷霆<span>空战</span></h2><p class="english-title">THUNDER SQUADRON</p><p class="menu-copy">穿越弹幕，锁定目标。<br>成为这片星空最后的王牌。</p><button id="start" class="primary">启动引擎 <span>↗</span></button><div class="menu-hint">自动射击 · 鼠标 / 方向键移动</div><div class="menu-tags"><span>追踪导弹</span><span>武器进化</span><span>旗舰决战</span></div></div></div>
+    <div id="paused" class="overlay hidden"><div class="pause-content"><div class="eyebrow">SYSTEM PAUSED</div><h2>稍作休整</h2><p>战场已冻结，准备好再起飞。</p><button id="resume" class="primary">继续作战 ↗</button><button id="restart" class="text-button">重新开始本局</button></div></div>
+    <div id="result" class="overlay hidden"><div class="result-content"><div class="eyebrow" id="result-label">MISSION COMPLETE</div><h2 id="result-title">任务完成</h2><div class="result-score" id="result-score">0</div><p id="result-record"></p><div class="result-stats" id="result-stats"></div><div class="debrief"><div class="section-label">战术复盘 <span id="review-source">本地规则分析</span></div><p id="review"></p><button id="ai-review" class="text-button">请本地 AI 教官点评 ↗</button></div><button id="again" class="primary">再次出击 ↗</button><button id="home" class="text-button">返回机库</button></div></div>
+    <div class="bottom-hud"><span id="health">♥ ♥ ♥</span><span id="weapon">武器 LV.1</span><button id="missile">导弹 × 5 <kbd>SPACE</kbd></button></div>
+   </div><div class="arena-footer"><span><i></i> 离线可玩 / 自动保存战绩</span><span id="seed-info">THUNDER ENGINE v1.0</span></div>
+  </section>
+  <aside class="right-panel"><section class="panel aircraft-panel"><div class="section-label">当前战机 <span>01</span></div><canvas id="ship-preview" width="280" height="190" aria-label="战机预览"></canvas><div class="ship-title"><h3>游隼 <span>F-01</span></h3><span class="pill small">轻型截击机</span></div><p class="muted">双涡轮推进 / 自适应火控</p><div class="skin-options" id="skins"><button data-skin="cyan" class="selected" title="极光蓝，免费" aria-label="极光蓝" style="--swatch:#67e8f9"></button><button data-skin="violet" title="脉冲紫，100 星币解锁" aria-label="脉冲紫，100 星币" style="--swatch:#b99cff"></button><button data-skin="amber" title="日冕金，200 星币解锁" aria-label="日冕金，200 星币" style="--swatch:#ffd480"></button></div><p id="skin-label" class="muted">极光蓝 · 已装备</p></section>
+   <section class="panel controls"><div class="section-label">飞行手册 <span>CONTROLS</span></div><div><span>移动战机</span><span><kbd>W A S D</kbd> / <kbd>↑ ↓ ← →</kbd></span></div><div><span>追踪导弹</span><kbd>SPACE</kbd></div><div><span>暂停 / 继续</span><kbd>P</kbd></div><p class="muted">也可移动鼠标或拖动战机。<br>主炮自动开火，专注闪避。</p></section>
+   <section class="panel supplies"><div class="section-label">空投补给 <span>SUPPLIES</span></div><div><b class="supply-icon cyan">W</b><p>火力升级<small>双发 → 三发 → 五发</small></p></div><div><b class="supply-icon violet">M</b><p>导弹补充<small>增加 3 枚追踪导弹</small></p></div><div><b class="supply-icon green">+</b><p>紧急修复<small>恢复 1 点装甲，短时护盾</small></p></div></section>
+   <p class="footer-note">保持连击，最高获得 <b>3×</b> 积分。<br>星空属于永不返航的勇气。</p>
+  </aside>
+ </main><script src="core.js"></script><script src="game.js"></script>
+</body></html>

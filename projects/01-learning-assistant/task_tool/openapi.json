@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "查询项目任务",
+    "description": "从本地 SQLite 读取人工确认的项目任务进度，仅查询，不修改数据。",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://host.docker.internal:8765"
+    }
+  ],
+  "paths": {
+    "/tasks": {
+      "get": {
+        "operationId": "query_tasks",
+        "summary": "查询真实项目进度",
+        "description": "当用户询问已完成事项、未完成事项或今天该做什么时调用。返回数据库中的任务编号、名称、状态与记录来源。记录反映人工确认的进度，不是自动检测。建议结合用户当天可用时间制定计划；调用失败时不得编造状态。",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "done",
+                "todo",
+                "in_progress"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "数据库中的任务记录；tasks 为空表示没有匹配记录。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "project": {
+                      "type": "string"
+                    },
+                    "data_source": {
+                      "type": "string"
+                    },
+                    "queried_at": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "tasks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "status_label": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "查询参数无效"
+          },
+          "503": {
+            "description": "数据库读取失败，不代表任务为空或已完成"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "xiaomao-pi-harness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Python desktop pet powered by pi RPC",
+  "dependencies": { "@earendil-works/pi-coding-agent": "1.2.0" }
+}

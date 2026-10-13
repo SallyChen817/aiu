@@ -1,0 +1,4 @@
+.qa-config.json
+.qa-*.json
+*.db
+__pycache__/

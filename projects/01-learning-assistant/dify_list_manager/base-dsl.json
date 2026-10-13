@@ -1,0 +1,1184 @@
+{
+  "app": {
+    "description": "",
+    "icon": "🤖",
+    "icon_background": "#FFEAD5",
+    "icon_type": "emoji",
+    "mode": "advanced-chat",
+    "name": "学习任务助手",
+    "use_icon_as_answer_icon": false
+  },
+  "dependencies": [
+    {
+      "current_identifier": null,
+      "type": "marketplace",
+      "value": {
+        "marketplace_plugin_unique_identifier": "langgenius/ollama:1.0.2@ef203a332d1b2b8952dbaa012be70be3e0a2d576b001489fb3b070efc970ffbe",
+        "version": null
+      }
+    },
+    {
+      "current_identifier": null,
+      "type": "package",
+      "value": {
+        "plugin_unique_identifier": "langgenius/sqlite:0.0.7@df92f7eb81e0d99b32440ac3d93572bd87fe71f846ce5f7815ef840c39ea37a7",
+        "version": null
+      }
+    }
+  ],
+  "kind": "app",
+  "version": "0.7.0",
+  "workflow": {
+    "conversation_variables": [],
+    "environment_variables": [],
+    "features": {
+      "file_upload": {},
+      "opening_statement": "",
+      "retriever_resource": {
+        "enabled": true
+      },
+      "sensitive_word_avoidance": {
+        "enabled": false
+      },
+      "speech_to_text": {
+        "enabled": false
+      },
+      "suggested_questions": [],
+      "suggested_questions_after_answer": {
+        "enabled": false
+      },
+      "text_to_speech": {
+        "enabled": false,
+        "language": "",
+        "voice": ""
+      }
+    },
+    "graph": {
+      "edges": [
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "start",
+            "targetType": "agent"
+          },
+          "id": "1791558356836-source-1791561920478-target",
+          "selected": false,
+          "source": "1791558356836",
+          "sourceHandle": "source",
+          "target": "1791561920478",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "agent",
+            "targetType": "parameter-extractor"
+          },
+          "id": "1791561920478-source-1791628872424-target",
+          "selected": false,
+          "source": "1791561920478",
+          "sourceHandle": "source",
+          "target": "1791628872424",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "parameter-extractor",
+            "targetType": "if-else"
+          },
+          "id": "1791628872424-source-1791629262029-target",
+          "selected": false,
+          "source": "1791628872424",
+          "sourceHandle": "source",
+          "target": "1791629262029",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "if-else",
+            "targetType": "answer"
+          },
+          "id": "1791629262029-false-answer-target",
+          "selected": false,
+          "source": "1791629262029",
+          "sourceHandle": "false",
+          "target": "answer",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "if-else",
+            "targetType": "if-else"
+          },
+          "id": "1791629262029-true-1791629605819-target",
+          "selected": false,
+          "source": "1791629262029",
+          "sourceHandle": "true",
+          "target": "1791629605819",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "if-else",
+            "targetType": "answer"
+          },
+          "id": "1791629605819-false-1791629883263-target",
+          "selected": false,
+          "source": "1791629605819",
+          "sourceHandle": "false",
+          "target": "1791629883263",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "if-else",
+            "targetType": "if-else"
+          },
+          "id": "1791629605819-true-1791629771994-target",
+          "selected": false,
+          "source": "1791629605819",
+          "sourceHandle": "true",
+          "target": "1791629771994",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "if-else",
+            "targetType": "answer"
+          },
+          "id": "1791629771994-false-1791629883263-target",
+          "selected": false,
+          "source": "1791629771994",
+          "sourceHandle": "false",
+          "target": "1791629883263",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "if-else",
+            "targetType": "human-input"
+          },
+          "id": "1791629771994-true-1791630331451-target",
+          "selected": false,
+          "source": "1791629771994",
+          "sourceHandle": "true",
+          "target": "1791630331451",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "human-input",
+            "targetType": "answer"
+          },
+          "id": "1791630331451-__timeout-1791631359929-target",
+          "selected": false,
+          "source": "1791630331451",
+          "sourceHandle": "__timeout",
+          "target": "1791631359929",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "human-input",
+            "targetType": "answer"
+          },
+          "id": "1791630331451-cancel-1791631351615-target",
+          "selected": false,
+          "source": "1791630331451",
+          "sourceHandle": "cancel",
+          "target": "1791631351615",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "human-input",
+            "targetType": "tool"
+          },
+          "id": "1791630331451-confirm-1791630573593-target",
+          "selected": false,
+          "source": "1791630331451",
+          "sourceHandle": "confirm",
+          "target": "1791630573593",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "tool",
+            "targetType": "tool"
+          },
+          "id": "1791630573593-source-1791631455655-target",
+          "selected": false,
+          "source": "1791630573593",
+          "sourceHandle": "source",
+          "target": "1791631455655",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "tool",
+            "targetType": "llm"
+          },
+          "id": "1791631455655-source-1791631562994-target",
+          "selected": false,
+          "source": "1791631455655",
+          "sourceHandle": "source",
+          "target": "1791631562994",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "isInIteration": false,
+            "isInLoop": false,
+            "iteration_id": null,
+            "loop_id": null,
+            "sourceType": "llm",
+            "targetType": "answer"
+          },
+          "id": "1791631562994-source-1791631775930-target",
+          "selected": false,
+          "source": "1791631562994",
+          "sourceHandle": "source",
+          "target": "1791631775930",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0
+        }
+      ],
+      "nodes": [
+        {
+          "data": {
+            "selected": false,
+            "title": "用户输入",
+            "type": "start",
+            "variables": []
+          },
+          "height": 72,
+          "id": "1791558356836",
+          "position": {
+            "x": -363.35329727907526,
+            "y": 164.18551825647202
+          },
+          "positionAbsolute": {
+            "x": -363.35329727907526,
+            "y": 164.18551825647202
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 242,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "agent_parameters": {
+              "instruction": {
+                "type": "constant",
+                "value": "你是 AI 项目任务助手，使用中文简洁回答。\n\n当用户询问项目进度、已完成事项、未完成事项或今天该做什么时，必须先调用 query_tasks 查询数据库。综合进度和今日建议时不传 status，获取全部任务。\n只将工具本次返回的记录作为任务状态依据，不把聊天记录、计划、建议或你的推测当作已完成的事实。\n查询失败时明确说明暂时无法读取进度，不编造任务状态；空列表不等于所有任务完成。\n先简要列出已完成和未完成事项，再根据用户今天可用的时间给出最多 3 项具体行动，包含预计用时和验收标准。建议用时之和不得超过用户可用时间；用时是估计。\n如果用户没有提供今天可用的时间，先报告查到的进度，再问“你今天可以投入多少时间？”。\n优先完成智能体工具接入，再推进自己的 Web 应用。区分数据库中已有的任务与建议拆分出来的小步骤。\n\n你是中文学习与项目任务助手。\n普通知识解释、Python 学习、代码讲解等问题，直接回答。\n用户询问真实项目进度、已完成事项、未完成事项，或需要结合进度制定计划时，先调用 query_tasks。任务状态只能以本次工具返回为准。\n用户要求记录完成情况或修改任务状态时，必须先调用 query_tasks，找到对应的真实任务。\n每次只准备修改一项任务。任务不明确、存在多个匹配、用户没有说明目标状态、查询失败时，先解释或追问，不生成修改提案。\n状态对应关系：todo＝未完成，in_progress＝进行中，done＝已完成。\n如果任务已经是用户要求的状态，直接说明，无需重复修改。\n只有任务唯一明确、目标状态明确且确实需要改变时，按下面格式输出修改提案：\n待确认修改\n任务编号：数据库中的真实 id\n任务名称：数据库中的真实 title\n当前状态：数据库中的状态英文值\n目标状态：用户要求的状态英文值\n说明：尚未保存，请在接下来的确认表单中核对并确认。\n你只负责查询、解释和提出修改提案，不执行数据库写入，也不能提前声称已经保存。\n当前流程只支持修改已有任务状态。新增计划、新增任务或批量修改时，明确说明当前范围，不假装已完成。\n\n你同时提供学习辅导和项目进度管理。\n\n对于知识解释、代码讲解、普通学习计划等不依赖项目进度的问题，直接回答，无需调用查询工具。\n\n只有问题涉及实际项目进度、已完成或未完成事项，或者需要结合项目进度安排计划时，才调用 query_tasks。必须先使用 SQLite 查询行工具查询相关清单及任务。\n\n数据库已经支持多个任务清单。\n查询清单和清单内任务时，使用 SQLite 的查询行工具。\n数据库结构：\ntask_lists：id 为清单编号，name 为清单名称。\ntasks：id 为任务编号，title 为任务内容，status 为状态，list_id 为所属清单编号。\ntasks.list_id 对应 task_lists.id。\n状态值：todo＝未完成，in_progress＝进行中，done＝已完成。\n用户询问有哪些清单时，查询 task_lists。\n用户查看指定清单时，先确定真实清单编号，再查询 tasks 中 list_id 等于该编号的记录。\n清单不存在时明确说明，空清单不等于清单不存在。\n用户未指定清单时，默认查看“项目任务”。\n工具中只执行 SELECT 查询，不能修改数据库。\n当前新增、删除清单的流程尚未配置完成，不能声称已创建或删除。"
+              },
+              "maximum_iterations": {
+                "type": "constant",
+                "value": 18
+              },
+              "model": {
+                "type": "constant",
+                "value": {
+                  "completion_params": {
+                    "think": false
+                  },
+                  "mode": "chat",
+                  "model": "qwen3.5:4b",
+                  "model_type": "llm",
+                  "provider": "langgenius/ollama/ollama",
+                  "type": "model-selector"
+                }
+              },
+              "query": {
+                "type": "constant",
+                "value": "{{#sys.query#}}"
+              },
+              "tools": {
+                "type": "constant",
+                "value": [
+                  {
+                    "enabled": true,
+                    "extra": {
+                      "description": "当用户询问已完成事项、未完成事项或今天该做什么时调用。返回数据库中的任务编号、名称、状态与记录来源。记录反映人工确认的进度，不是自动检测。建议结合用户当天可用时间制定计划；调用失败时不得编造状态。"
+                    },
+                    "parameters": {
+                      "status": {
+                        "auto": 1,
+                        "value": null
+                      }
+                    },
+                    "plugin_id": null,
+                    "provider_name": "8247ed36-86c5-5222-8c4b-f1bc7cc9b4f7",
+                    "provider_show_name": "项目任务查询",
+                    "settings": {},
+                    "tool_description": "当用户询问已完成事项、未完成事项或今天该做什么时调用。返回数据库中的任务编号、名称、状态与记录来源。记录反映人工确认的进度，不是自动检测。建议结合用户当天可用时间制定计划；调用失败时不得编造状态。",
+                    "tool_label": "query_tasks",
+                    "tool_name": "query_tasks",
+                    "type": "api"
+                  },
+                  {
+                    "enabled": true,
+                    "extra": {
+                      "description": "使用提供的 SQL SELECT 语句从 SQLite 数据库中的表查询行"
+                    },
+                    "parameters": {
+                      "select_sql": {
+                        "auto": 1,
+                        "value": null
+                      }
+                    },
+                    "plugin_id": "langgenius/sqlite",
+                    "provider_name": "langgenius/sqlite/sqlite",
+                    "provider_show_name": "langgenius/sqlite/sqlite",
+                    "settings": {},
+                    "tool_description": "使用提供的 SQL SELECT 语句从 SQLite 数据库中的表查询行",
+                    "tool_label": "查询行",
+                    "tool_name": "select_sql",
+                    "type": "builtin"
+                  }
+                ]
+              }
+            },
+            "agent_strategy_label": "FunctionCalling",
+            "agent_strategy_name": "function_calling",
+            "agent_strategy_provider_name": "langgenius/agent/agent",
+            "meta": {
+              "minimum_dify_version": "1.7.0",
+              "version": "0.0.2"
+            },
+            "output_schema": {},
+            "plugin_unique_identifier": "langgenius/agent:0.0.50@bf1040682cc9e1e5caf9b4670531639c440bf9448025cd5ee0915fdcf7a921f3",
+            "selected": true,
+            "title": "Agent",
+            "tool_node_version": "2",
+            "type": "agent"
+          },
+          "height": 187,
+          "id": "1791561920478",
+          "position": {
+            "x": 10.985510073396256,
+            "y": 291.0767736843774
+          },
+          "positionAbsolute": {
+            "x": 10.985510073396256,
+            "y": 291.0767736843774
+          },
+          "selected": true,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "instruction": "只提取输入内容，不补充或猜测。\n只有输入包含完整的“待确认修改”提案，且任务编号、名称、当前状态、目标状态均明确时，can_update 才为 true。\n普通回答、学习建议、项目进度报告、追问、查询失败、任务已经处于目标状态，都应设为 false。\n不要把学习计划里的编号当作任务编号，也不要把建议完成某项任务理解成已经完成。\n没有修改提案时，task_id 返回 0，task_title 返回空字符串，old_status 和 new_status 均返回 todo，can_update 返回 false。",
+            "model": {
+              "completion_params": {
+                "temperature": 0.7,
+                "think": false
+              },
+              "mode": "chat",
+              "name": "qwen3.5:4b",
+              "provider": "langgenius/ollama/ollama"
+            },
+            "parameters": [
+              {
+                "description": "是否存在完整、明确的待确认修改提案",
+                "name": "can_update",
+                "required": true,
+                "type": "boolean"
+              },
+              {
+                "description": "提案中的任务名称",
+                "name": "task_title",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "description": "提案中的真实任务编号，没有则为 0",
+                "name": "task_id",
+                "required": true,
+                "type": "number"
+              },
+              {
+                "description": "修改前状态，只能是 todo、in_progress、done",
+                "name": "old_status",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "description": "目标状态，只能是 todo、in_progress、done",
+                "name": "new_status",
+                "required": true,
+                "type": "string"
+              }
+            ],
+            "query": [
+              "1791561920478",
+              "text"
+            ],
+            "reasoning_mode": "prompt",
+            "selected": false,
+            "title": "参数提取器",
+            "type": "parameter-extractor",
+            "vision": {
+              "enabled": false
+            }
+          },
+          "height": 87,
+          "id": "1791628872424",
+          "position": {
+            "x": 344.10200457934167,
+            "y": 455.63932867895437
+          },
+          "positionAbsolute": {
+            "x": 344.10200457934167,
+            "y": 455.63932867895437
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "cases": [
+              {
+                "case_id": "true",
+                "conditions": [
+                  {
+                    "comparison_operator": "is",
+                    "id": "58d77e23-a038-5999-80c2-73b2970bbf61",
+                    "value": true,
+                    "varType": "boolean",
+                    "variable_selector": [
+                      "1791628872424",
+                      "can_update"
+                    ]
+                  },
+                  {
+                    "comparison_operator": ">",
+                    "id": "5a5d442c-09fd-59d5-88b7-4fe9358f5822",
+                    "numberVarType": "constant",
+                    "value": "0",
+                    "varType": "number",
+                    "variable_selector": [
+                      "1791628872424",
+                      "task_id"
+                    ]
+                  },
+                  {
+                    "comparison_operator": "not empty",
+                    "id": "bbc0cea5-ccf9-5c25-997a-0e538cff91b9",
+                    "value": "",
+                    "varType": "string",
+                    "variable_selector": [
+                      "1791628872424",
+                      "task_title"
+                    ]
+                  }
+                ],
+                "logical_operator": "and"
+              }
+            ],
+            "selected": false,
+            "title": "条件分支",
+            "type": "if-else"
+          },
+          "height": 199,
+          "id": "1791629262029",
+          "position": {
+            "x": 520.0626889575242,
+            "y": 762.3563228343415
+          },
+          "positionAbsolute": {
+            "x": 520.0626889575242,
+            "y": 762.3563228343415
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "cases": [
+              {
+                "case_id": "true",
+                "conditions": [
+                  {
+                    "comparison_operator": "is",
+                    "id": "60259785-3ce5-51a4-b62b-94c0b6a1378f",
+                    "value": "todo",
+                    "varType": "string",
+                    "variable_selector": [
+                      "1791628872424",
+                      "old_status"
+                    ]
+                  },
+                  {
+                    "comparison_operator": "is",
+                    "id": "fcf76dce-8cce-55cf-a226-acf67c2c7753",
+                    "value": "in_progress",
+                    "varType": "string",
+                    "variable_selector": [
+                      "1791628872424",
+                      "old_status"
+                    ]
+                  },
+                  {
+                    "comparison_operator": "is",
+                    "id": "250aba61-b371-5115-91b7-63322f22983d",
+                    "value": "done",
+                    "varType": "string",
+                    "variable_selector": [
+                      "1791628872424",
+                      "old_status"
+                    ]
+                  }
+                ],
+                "logical_operator": "or"
+              }
+            ],
+            "selected": false,
+            "title": "校验旧状态",
+            "type": "if-else"
+          },
+          "height": 247,
+          "id": "1791629605819",
+          "position": {
+            "x": 961.2728170433693,
+            "y": 944.3405498381909
+          },
+          "positionAbsolute": {
+            "x": 961.2728170433693,
+            "y": 944.3405498381909
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "cases": [
+              {
+                "case_id": "true",
+                "conditions": [
+                  {
+                    "comparison_operator": "is",
+                    "id": "4603a73f-14f3-5775-a1d3-62ae40e2785b",
+                    "value": "todo",
+                    "varType": "string",
+                    "variable_selector": [
+                      "1791628872424",
+                      "new_status"
+                    ]
+                  },
+                  {
+                    "comparison_operator": "is",
+                    "id": "30e027cd-7a5b-569e-bc51-3ee468be266b",
+                    "value": "in_progress",
+                    "varType": "string",
+                    "variable_selector": [
+                      "1791628872424",
+                      "new_status"
+                    ]
+                  },
+                  {
+                    "comparison_operator": "is",
+                    "id": "87f0d3bf-a1b6-5332-84a2-72246faa44c6",
+                    "value": "done",
+                    "varType": "string",
+                    "variable_selector": [
+                      "1791628872424",
+                      "new_status"
+                    ]
+                  }
+                ],
+                "logical_operator": "or"
+              }
+            ],
+            "selected": false,
+            "title": "校验新状态",
+            "type": "if-else"
+          },
+          "height": 247,
+          "id": "1791629771994",
+          "position": {
+            "x": 1306.279702806601,
+            "y": 969.1291409337387
+          },
+          "positionAbsolute": {
+            "x": 1306.279702806601,
+            "y": 969.1291409337387
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "answer": "本次没有修改任务。未能准确识别任务状态，请说明要将哪项任务改为“未完成”“进行中”或“已完成”",
+            "selected": false,
+            "title": "直接回复 2",
+            "type": "answer",
+            "variables": []
+          },
+          "height": 131,
+          "id": "1791629883263",
+          "position": {
+            "x": 1686.8932030358842,
+            "y": 1498.1512840202129
+          },
+          "positionAbsolute": {
+            "x": 1686.8932030358842,
+            "y": 1498.1512840202129
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "delivery_methods": [
+              {
+                "enabled": true,
+                "id": "cab70215-a244-58f6-8e08-f683d30289c7",
+                "type": "webapp"
+              }
+            ],
+            "form_content": "请确认本次修改：\n任务编号： {{#1791628872424.task_id#}}\n任务名称： {{#1791628872424.task_title#}}\n当前状态： {{#1791628872424.old_status#}}\n修改为： {{#1791628872424.new_status#}}\n\n状态说明：todo＝未完成，in_progress＝进行中，done＝已完成。\n点击“确认更新”后才会保存；点击“取消”不会修改数据库。",
+            "inputs": [],
+            "selected": false,
+            "timeout": 1,
+            "timeout_unit": "day",
+            "title": "确认任务修改",
+            "type": "human-input",
+            "user_actions": [
+              {
+                "button_style": "default",
+                "id": "confirm",
+                "title": "confirm"
+              },
+              {
+                "button_style": "default",
+                "id": "cancel",
+                "title": "cancel"
+              }
+            ]
+          },
+          "height": 188,
+          "id": "1791630331451",
+          "position": {
+            "x": 1725.2978948686318,
+            "y": 1174.3081310344494
+          },
+          "positionAbsolute": {
+            "x": 1725.2978948686318,
+            "y": 1174.3081310344494
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "is_team_authorization": true,
+            "meta": null,
+            "paramSchemas": [
+              {
+                "auto_generate": null,
+                "default": null,
+                "form": "llm",
+                "human_description": {
+                  "en_US": "The name of the table to update data in.",
+                  "ja_JP": "データを更新するテーブル名。",
+                  "pt_BR": "O nome da tabela para atualizar dados。",
+                  "zh_Hans": "要更新数据的表名。"
+                },
+                "input_schema": null,
+                "label": {
+                  "en_US": "Table Name",
+                  "ja_JP": "テーブル名",
+                  "pt_BR": "Nome da Tabela",
+                  "zh_Hans": "表名"
+                },
+                "llm_description": "The name of the table to update data in.",
+                "max": null,
+                "min": null,
+                "multiple": false,
+                "name": "table",
+                "options": [],
+                "placeholder": null,
+                "precision": null,
+                "required": true,
+                "scope": null,
+                "template": null,
+                "type": "string"
+              },
+              {
+                "auto_generate": null,
+                "default": null,
+                "form": "llm",
+                "human_description": {
+                  "en_US": "The data to update. Provide a JSON string with columns and new values.",
+                  "ja_JP": "更新するデータ。カラムと新しい値を含む JSON 文字列を指定してください。",
+                  "pt_BR": "Os dados a serem atualizados. Forneça uma string JSON com colunas e novos valores.",
+                  "zh_Hans": "要更新的数据。请提供包含列和新值的 JSON 字符串。"
+                },
+                "input_schema": null,
+                "label": {
+                  "en_US": "Data to Update (JSON String)",
+                  "ja_JP": "更新するデータ（JSON 文字列）",
+                  "pt_BR": "Dados para Atualizar (String JSON)",
+                  "zh_Hans": "要更新的数据（JSON 字符串）"
+                },
+                "llm_description": "The data to update. Provide a JSON string with columns and new values.",
+                "max": null,
+                "min": null,
+                "multiple": false,
+                "name": "data",
+                "options": [],
+                "placeholder": null,
+                "precision": null,
+                "required": true,
+                "scope": null,
+                "template": null,
+                "type": "string"
+              },
+              {
+                "auto_generate": null,
+                "default": null,
+                "form": "llm",
+                "human_description": {
+                  "en_US": "The conditions for selecting rows to update. Provide a JSON string with columns and values to match.",
+                  "ja_JP": "更新する行を選択するための条件。カラムと値を含む JSON 文字列を指定してください。",
+                  "pt_BR": "As condições para selecionar as linhas a serem atualizadas. Forneça uma string JSON com colunas e valores para corresponder.",
+                  "zh_Hans": "用于选择要更新行的条件。请提供包含列和值的 JSON 字符串。"
+                },
+                "input_schema": null,
+                "label": {
+                  "en_US": "Where Conditions (JSON String)",
+                  "ja_JP": "条件（JSON 文字列）",
+                  "pt_BR": "Condições (String JSON)",
+                  "zh_Hans": "条件（JSON 字符串）"
+                },
+                "llm_description": "The conditions for selecting rows to update. Provide a JSON string with columns and values to match.",
+                "max": null,
+                "min": null,
+                "multiple": false,
+                "name": "where",
+                "options": [],
+                "placeholder": null,
+                "precision": null,
+                "required": true,
+                "scope": null,
+                "template": null,
+                "type": "string"
+              }
+            ],
+            "params": {
+              "data": "",
+              "table": "",
+              "where": ""
+            },
+            "plugin_id": "langgenius/sqlite",
+            "plugin_unique_identifier": "langgenius/sqlite:0.0.7@df92f7eb81e0d99b32440ac3d93572bd87fe71f846ce5f7815ef840c39ea37a7",
+            "provider_icon": "/console/api/workspaces/current/plugin/icon?tenant_id=645ff79a-0e31-5904-9f0c-014fe5b5118a&filename=41d42dd6aa697ee17cfeb17caed858ff048242bff4801b2719e50d0d0fbfc4da.svg",
+            "provider_icon_dark": null,
+            "provider_id": "langgenius/sqlite/sqlite",
+            "provider_name": "langgenius/sqlite/sqlite",
+            "provider_show_name": "SQLite",
+            "provider_type": "builtin",
+            "selected": false,
+            "title": "更新行（JSON）",
+            "tool_configurations": {},
+            "tool_description": "使用 JSON 字符串更新 SQLite 数据库中表的行。请提供表名、要更新的数据和选择行的条件，均为 JSON 字符串。",
+            "tool_label": "更新行（JSON）",
+            "tool_name": "update_json",
+            "tool_node_version": "2",
+            "tool_parameters": {
+              "data": {
+                "type": "mixed",
+                "value": "{\"status\": \"{{#1791628872424.new_status#}}\", \"source\": \"用户通过 Dify 确认更新\"}"
+              },
+              "table": {
+                "type": "mixed",
+                "value": "tasks"
+              },
+              "where": {
+                "type": "mixed",
+                "value": "{\"id\":{{#1791628872424.task_id#}},\"status\":\"{{#1791628872424.old_status#}}\"}"
+              }
+            },
+            "type": "tool"
+          },
+          "height": 51,
+          "id": "1791630573593",
+          "position": {
+            "x": 2026.2978948686318,
+            "y": 1174.3081310344494
+          },
+          "positionAbsolute": {
+            "x": 2026.2978948686318,
+            "y": 1174.3081310344494
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "answer": "已取消，本次没有修改任务状态。",
+            "selected": false,
+            "title": "直接回复 3",
+            "type": "answer",
+            "variables": []
+          },
+          "height": 99,
+          "id": "1791631351615",
+          "position": {
+            "x": 2026.2978948686318,
+            "y": 1264.3081310344494
+          },
+          "positionAbsolute": {
+            "x": 2026.2978948686318,
+            "y": 1264.3081310344494
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "answer": "确认已超时，本次没有修改任务状态。需要修改时，请重新提出请求。",
+            "selected": false,
+            "title": "直接回复 4",
+            "type": "answer",
+            "variables": []
+          },
+          "height": 115,
+          "id": "1791631359929",
+          "position": {
+            "x": 2026.2978948686318,
+            "y": 1402.3081310344494
+          },
+          "positionAbsolute": {
+            "x": 2026.2978948686318,
+            "y": 1402.3081310344494
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "is_team_authorization": true,
+            "meta": null,
+            "paramSchemas": [
+              {
+                "auto_generate": null,
+                "default": null,
+                "form": "llm",
+                "human_description": {
+                  "en_US": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。",
+                  "ja_JP": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。",
+                  "pt_BR": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。",
+                  "zh_Hans": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。"
+                },
+                "input_schema": null,
+                "label": {
+                  "en_US": "status",
+                  "ja_JP": "status",
+                  "pt_BR": "status",
+                  "zh_Hans": "status"
+                },
+                "llm_description": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。",
+                "max": null,
+                "min": null,
+                "multiple": false,
+                "name": "status",
+                "options": [],
+                "placeholder": {
+                  "en_US": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。",
+                  "ja_JP": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。",
+                  "pt_BR": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。",
+                  "zh_Hans": "不传表示查询全部；done=已完成，todo=未完成，in_progress=进行中。"
+                },
+                "precision": null,
+                "required": false,
+                "scope": null,
+                "template": null,
+                "type": "string"
+              }
+            ],
+            "params": {
+              "status": ""
+            },
+            "plugin_id": null,
+            "plugin_unique_identifier": null,
+            "provider_icon": {
+              "background": "#FEF7C3",
+              "content": "🕵️"
+            },
+            "provider_icon_dark": null,
+            "provider_id": "8247ed36-86c5-5222-8c4b-f1bc7cc9b4f7",
+            "provider_name": "项目任务查询",
+            "provider_show_name": "项目任务查询",
+            "provider_type": "api",
+            "selected": false,
+            "title": "查询更新后的任务",
+            "tool_configurations": {},
+            "tool_description": "当用户询问已完成事项、未完成事项或今天该做什么时调用。返回数据库中的任务编号、名称、状态与记录来源。记录反映人工确认的进度，不是自动检测。建议结合用户当天可用时间制定计划；调用失败时不得编造状态。",
+            "tool_label": "query_tasks",
+            "tool_name": "query_tasks",
+            "tool_node_version": "2",
+            "tool_parameters": {
+              "status": {
+                "type": "mixed",
+                "value": null
+              }
+            },
+            "type": "tool"
+          },
+          "height": 51,
+          "id": "1791631455655",
+          "position": {
+            "x": 2327.297894868632,
+            "y": 1174.3081310344494
+          },
+          "positionAbsolute": {
+            "x": 2327.297894868632,
+            "y": 1174.3081310344494
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "context": {
+              "enabled": false,
+              "variable_selector": []
+            },
+            "model": {
+              "completion_params": {
+                "temperature": 0.7,
+                "think": false
+              },
+              "mode": "chat",
+              "name": "qwen3.5:4b",
+              "provider": "langgenius/ollama/ollama"
+            },
+            "model_selector": null,
+            "prompt_template": [
+              {
+                "id": "907f3809-1b7d-5f83-b093-07b983135b95",
+                "role": "system",
+                "text": "你负责根据工具执行结果报告任务修改情况，使用简洁中文。\n只有更新工具明确返回 status=success、rows_updated=1，且再次查询的对应任务状态等于目标状态，才能说“已保存”。\nrows_updated=0 时，说明没有修改任何记录，任务可能已变化，需要重新查询和确认。\n工具返回错误、匹配多条记录、查询失败或查询结果与目标状态不符时，如实说明，不能声称更新成功，也不要自行重试写入。\n成功时只报告任务名称和最新状态。"
+              },
+              {
+                "id": "24335dcf-cbbc-5144-81df-a47d8a18026e",
+                "role": "user",
+                "text": "任务编号：  {{#1791628872424.task_id#}}\n任务名称： {{#1791628872424.task_title#}}\n目标状态： {{#1791628872424.new_status#}}\n更新执行结果： {{#1791630573593.text#}}\n最新任务记录： {{#1791631455655.text#}}"
+              }
+            ],
+            "selected": false,
+            "title": "整理更新结果",
+            "type": "llm",
+            "vision": {
+              "enabled": false
+            }
+          },
+          "height": 87,
+          "id": "1791631562994",
+          "position": {
+            "x": 2628.297894868632,
+            "y": 1174.3081310344494
+          },
+          "positionAbsolute": {
+            "x": 2628.297894868632,
+            "y": 1174.3081310344494
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "answer": "{{#1791631562994.text#}}",
+            "selected": false,
+            "title": "直接回复 5",
+            "type": "answer",
+            "variables": []
+          },
+          "height": 101,
+          "id": "1791631775930",
+          "position": {
+            "x": 2929.297894868632,
+            "y": 1174.3081310344494
+          },
+          "positionAbsolute": {
+            "x": 2929.297894868632,
+            "y": 1174.3081310344494
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        },
+        {
+          "data": {
+            "answer": "{{#1791561920478.text#}}",
+            "selected": false,
+            "title": "直接回复",
+            "type": "answer",
+            "variables": []
+          },
+          "height": 101,
+          "id": "answer",
+          "position": {
+            "x": 706.7441292461247,
+            "y": 1229.8361935936816
+          },
+          "positionAbsolute": {
+            "x": 706.7441292461247,
+            "y": 1229.8361935936816
+          },
+          "selected": false,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "type": "custom",
+          "width": 241,
+          "zIndex": 0
+        }
+      ],
+      "viewport": {
+        "x": 179.57947458013504,
+        "y": 272.0874519254006,
+        "zoom": 0.287174588749259
+      }
+    },
+    "rag_pipeline_variables": []
+  }
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI 项目助手 · 本地工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="AI 项目助手首页"><span class="brand-mark">✳</span><span>AI 项目助手<small>LOCAL WORKSPACE</small></span></a>
+    <div class="top-actions"><span id="connection" class="connection"><i></i>正在检查连接</span><button id="setup-button" class="button outline">连接 Dify <span aria-hidden="true">↗</span></button></div>
+  </header>
+  <main class="workspace">
+    <aside class="panel tasks-panel" aria-labelledby="task-heading">
+      <div class="eyebrow">YOUR LISTS</div><h2 id="task-heading">我的任务清单</h2><p class="muted intro">把想做的事说出来，确认后记录。</p>
+      <label class="field-label" for="list-select">当前清单</label><select id="list-select" aria-label="切换任务清单"><option value="1">项目任务</option></select>
+      <div class="progress-card"><div class="progress-label"><span>清单进度</span><strong id="progress-number">— / —</strong></div><progress id="progress" max="5" value="0" aria-label="已完成任务比例"></progress><p id="progress-note">正在读取任务记录…</p></div>
+      <div class="section-heading"><h3>任务清单</h3><button id="refresh-tasks" class="text-button" title="重新读取数据库">刷新 ↻</button></div>
+      <ul id="task-list" class="task-list" aria-live="polite"></ul>
+      <div id="task-error" class="error hidden" role="alert"></div>
+      <div class="storage-note"><span class="storage-dot"></span><div>进度保存于本地数据库<small id="task-updated">显示已记录的进度，支持刷新查看。</small></div></div>
+      <div class="project-caption"><span>01</span><p>一个模型。真实数据。<br>属于自己的应用。</p></div>
+    </aside>
+
+    <section class="panel chat-panel" aria-labelledby="chat-heading">
+      <div class="chat-top"><div><span class="eyebrow">PROJECT COPILOT</span><h2 id="chat-heading">学习与项目助手</h2></div><button id="new-chat" class="button quiet">＋ 新对话</button></div>
+      <div id="chat-scroll" class="chat-scroll">
+        <div id="welcome" class="welcome">
+          <div class="welcome-symbol" aria-hidden="true">✳</div>
+          <span class="eyebrow">MAKE A LITTLE PROGRESS TODAY</span>
+          <h1>把今天的时间，<br>花在下一步。</h1>
+          <p>聊学习，记待办。新增、修改和删除，都由你确认。</p>
+          <div class="starter-grid">
+            <button class="starter" data-query="明天早上要做：背单词、完成 Python 作业、整理材料。"><span>↗</span><strong>记下明天要做的事</strong><small>整理成清单，一次确认后保存</small></button>
+            <button class="starter" data-query="Python 的列表和元组有什么区别？给我一个简单例子。"><span>⌘</span><strong>学懂一个 Python 知识点</strong><small>用简单解释和例子开始</small></button>
+          </div>
+        </div>
+        <div id="messages" class="messages" aria-live="polite" aria-relevant="additions text"></div>
+      </div>
+      <div class="composer-area">
+        <div id="setup-hint" class="setup-hint hidden">先连接你的 Dify 应用，即可开始对话。<button id="setup-link" class="text-button">去连接 →</button></div>
+        <form id="chat-form"><label for="query" class="sr-only">输入你的问题或待办事项</label><textarea id="query" rows="2" maxlength="6000" placeholder="例如：明天要做任务A、任务B、任务C…"></textarea><div class="composer-bottom"><span id="compose-status">Enter 发送 · Shift + Enter 换行</span><button id="send" type="submit" class="button primary">发送 <span aria-hidden="true">↑</span></button></div></form>
+        <p class="composer-note">建议由本地模型生成；项目状态以查询结果为准。</p>
+      </div>
+    </section>
+
+    <aside class="panel activity-panel" aria-labelledby="activity-heading">
+      <div class="eyebrow">BEHIND THE ANSWER</div><div class="section-heading"><h2 id="activity-heading">工具调用</h2><span id="tool-count" class="count">0</span></div><p class="muted intro">看到答案依据，了解实际执行。</p>
+      <div id="tool-list" class="tool-list" aria-live="polite"></div>
+      <div id="tool-empty" class="tool-empty"><div aria-hidden="true">⌁</div><strong>等待一次真实查询</strong><p>涉及项目进度时，助手会查询数据库，调用结果将显示在这里。</p></div>
+      <div class="capability-note"><span>当前能力</span><p>学习问答 <b>＋</b> 清单管理</p><small>支持多清单和批量事项；增删改需你确认。</small></div>
+    </aside>
+  </main>
+
+  <dialog id="setup-dialog" aria-labelledby="setup-title">
+    <form id="setup-form"><div class="dialog-top"><span class="eyebrow">CONNECT YOUR ASSISTANT</span><button id="close-setup" class="icon-button" type="button" aria-label="关闭连接设置">×</button></div><h2 id="setup-title">连接你的 Dify 应用</h2><p class="muted">只需配置一次。密钥保存在本机后端，网页不会保存或展示它。</p>
+      <ol class="setup-steps"><li>打开 <a href="http://localhost" target="_blank" rel="noopener">本地 Dify ↗</a>，进入“学习任务助手”。</li><li>点击右上角“发布”，发布当前流程。</li><li>进入应用的“API 访问”，创建 API 密钥并粘贴到下方。</li></ol>
+      <label class="field-label" for="api-key">应用 API 密钥</label><input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="app-…" required><p class="field-help">验证通过后保存并开启新对话；Dify 中的历史记录仍保留。</p>
+      <div id="setup-error" class="error hidden" role="alert"></div><button id="save-config" class="button primary full" type="submit">验证并连接</button>
+    </form>
+  </dialog>
+</body>
+</html>

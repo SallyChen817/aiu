@@ -1,0 +1,5 @@
+# Paths are relative to this dataset configuration directory.
+train: images/train
+val: images/val
+names:
+  0: pen
